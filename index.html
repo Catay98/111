@@ -3,229 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Play Monster Hunter Wilds online - Experience the thrill of hunting magnificent creatures in a vast open world. Join millions of hunters worldwide in this action-packed adventure game.">
-    <meta name="keywords" content="Monster Hunter, Monster Hunter Wilds, online game, action RPG, hunting game">
+    <meta name="description" content="Monster Hunter Wilds - Experience the thrill of hunting magnificent creatures in a vast open world. Join millions of hunters worldwide in this action-packed adventure game.">
+    <meta name="keywords" content="Monster Hunter, Monster Hunter Wilds, action RPG, hunting game">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://monsterhunter.space">
-    <title>Monster Hunter Wilds - Play The Ultimate Hunting Adventure Online</title>
+    <title>Monster Hunter Wilds - The Ultimate Hunting Adventure</title>
     <style>
-        :root {
-            --apple-blue: #007AFF;
-            --apple-gray: #F5F5F7;
-            --apple-dark: #1D1D1F;
-            --apple-white: #FFFFFF;
-            --apple-light-blue: #F2F7FF;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: var(--apple-dark);
-            background-color: var(--apple-white);
-        }
-
-        .container {
+        body, html {
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
         }
 
-        header {
-            background: var(--apple-light-blue);
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--apple-blue);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--apple-dark);
-            margin: 2rem 0 1rem;
-        }
-
-        .hero-description {
-            font-size: 1.5rem;
-            color: var(--apple-dark);
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .game-section {
-            padding: 40px 0;
-            background: var(--apple-white);
+        .game-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
         .game-iframe {
             width: 100%;
-            height: 700px;
+            height: 100%;
             border: none;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 20px 0;
-            background-color: var(--apple-gray);
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 40px 0;
-        }
-
-        .feature-card {
-            background: var(--apple-gray);
-            padding: 30px;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--apple-blue);
-            color: var(--apple-white);
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            margin: 20px 0;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: #0056b3;
         }
 
         #loading-message {
-            text-align: center;
-            padding: 20px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-size: 1.2rem;
-            color: var(--apple-dark);
-        }
-
-        #error-message {
-            background: #FFE5E5;
-            color: #D00;
-            padding: 15px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 40px;
             border-radius: 8px;
-            margin: 20px 0;
             display: none;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            h2 {
-                font-size: 1.75rem;
-            }
-
-            .hero-description {
-                font-size: 1.25rem;
-            }
-
-            .game-iframe {
-                height: 500px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Monster Hunter Wilds</h1>
-            <p class="hero-description">Embark on an epic hunting adventure in a breathtaking open world filled with majestic creatures and endless possibilities.</p>
-        </div>
-    </header>
-
-    <main class="container">
-        <section class="game-section">
-            <h2>Play Now</h2>
-            <div id="error-message"></div>
-            <div id="loading-message">Loading your adventure...</div>
-            <div class="game-iframe">
-                <iframe id="game-frame"
-                        src="https://www.monsterhunter.com/wilds/zh-hans/"
-                        title="Monster Hunter Wilds Game"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                        onload="handleGameLoad()"
-                        onerror="handleGameError()">
-                </iframe>
-            </div>
-        </section>
-
-        <section class="features">
-            <div class="feature-card">
-                <h2>Epic Hunts</h2>
-                <p>Track and hunt magnificent creatures across vast landscapes, each with unique behaviors and abilities.</p>
-            </div>
-            <div class="feature-card">
-                <h2>Multiplayer Action</h2>
-                <p>Team up with hunters worldwide to take down the most formidable monsters in thrilling cooperative gameplay.</p>
-            </div>
-            <div class="feature-card">
-                <h2>Stunning World</h2>
-                <p>Explore breathtaking environments, from lush forests to desolate wastelands, each teeming with life and secrets.</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Game Overview</h2>
-            <p>Monster Hunter Wilds represents the pinnacle of action RPG gaming, where players take on the role of skilled hunters in a world where colossal creatures roam freely. With stunning graphics, intricate combat mechanics, and a rich ecosystem of monsters to study and hunt, this game offers an unparalleled gaming experience for both veterans and newcomers alike.</p>
-            <a href="#game-frame" class="cta-button">Start Hunting Now</a>
-        </section>
-    </main>
+    <div class="game-container">
+        <iframe class="game-iframe"
+                src="https://www.monsterhunter.com/wilds/zh-hans/"
+                title="Monster Hunter Wilds"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
+    </div>
+    <div id="loading-message">Loading...</div>
 
     <script>
-        function handleGameLoad() {
-            document.getElementById('loading-message').style.display = 'none';
-        }
-
-        function handleGameError() {
-            const errorMessage = document.getElementById('error-message');
-            errorMessage.style.display = 'block';
-            errorMessage.textContent = 'Unable to load the game. Please check your connection and try again.';
-            document.getElementById('loading-message').style.display = 'none';
-        }
-
-        // Check game server status
         window.addEventListener('load', function() {
-            fetch('https://www.monsterhunter.com/wilds/zh-hans/', {
-                method: 'HEAD'
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Game server is currently unavailable');
-                }
-            })
-            .catch(error => {
-                handleGameError();
-            });
+            document.getElementById('loading-message').style.display = 'none';
         });
     </script>
 </body>
