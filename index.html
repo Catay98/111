@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Monster Hunter online, an action-packed game where you hunt down massive monsters.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://Monsterhunter.space">
+    <title>Monster Hunter Online - Play Now</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F1F1F1;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #F8F8F8;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .game-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            background-color: #EFEFEF;
+        }
+
+        .error-message {
+            background-color: #fff3f3;
+            color: #d32f2f;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        #loading-message {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Monster Hunter Online</h1>
+        <p>Embark on an epic journey to hunt colossal monsters in this action-packed online game.</p>
+    </header>
+
+    <div class="container">
+        <div id="error-message" class="error-message"></div>
+        <div id="loading-message">加载中，请稍候...</div>
+
+        <div class="game-iframe" id="game-section">
+            <iframe id="game-frame" 
+                    src="https://cloud.onlinegames.io/games/2025/unity/monster-hunter/index-og.html" 
+                    title="Monster Hunter Game"
+                    onload="handleGameLoad()"
+                    onerror="handleGameError()">
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        function startGame() {
+            try {
+                const gameUrl = "https://cloud.onlinegames.io/games/2025/unity/monster-hunter/index-og.html";
+                document.getElementById('loading-message').style.display = 'block';
+                window.location.href = gameUrl;
+            } catch (error) {
+                showError("游戏暂时无法访问，请稍后再试");
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            const loadingMessage = document.getElementById('loading-message');
+            errorDiv.style.display = 'block';
+            loadingMessage.style.display = 'none';
+            errorDiv.textContent = message;
+        }
+
+        function handleGameLoad() {
+            document.getElementById('loading-message').style.display = 'none';
+        }
+
+        function handleGameError() {
+            showError("游戏加载出错，请尝试以下解决方案：\n1. 检查网络连接\n2. 刷新页面重试\n3. 使用其他浏览器访问");
+        }
+
+        // 检查游戏服务器状态
+        window.addEventListener('load', function() {
+            fetch("https://cloud.onlinegames.io/games/2025/unity/monster-hunter/index-og.html", {
+                method: 'HEAD'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('游戏服务器暂时无法访问');
+                }
+            })
+            .catch(error => {
+                showError("游戏服务器连接失败，请稍后再试");
+            });
+        });
+    </script>
+</body>
+</html>
